@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:elevation="@dimen/dp_3"
+    android:padding="@dimen/dp_10">
+
+
+    <TextView
+        android:id="@+id/txtTitle"
+        style="@style/textViewStyle"
+        android:layout_margin="@dimen/dp_4"
+        android:text="title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/label_size"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgFood"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:src="@drawable/pop_1"
+        app:srcCompat="@drawable/pop_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView18"
+            style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:text="$"
+            android:textColor="@color/darkOrange"
+            android:textSize="@dimen/label_size"
+            />
+        <TextView
+        android:id="@+id/txtPrice"
+        style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+        android:text="0.0"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/text_header"
+        android:textStyle="bold" />
+
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdd"
+        style="@style/buttonStyle"
+        android:layout_margin="8dp"
+        android:background="@drawable/orange_button"
+        android:padding="@dimen/dp_10"
+        android:text="+Add"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>

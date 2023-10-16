@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_names">
+        <item>Pizza</item>
+        <item>Burger</item>
+        <item>Hotdog</item>
+        <item>Drink</item>
+        <item>Donut</item>
+        <!-- Add more category names as needed -->
+    </string-array>
+
+    <string-array name="popular_food_names">
+        <item>Pepperoni Pizza</item>
+        <item>Cheese Burger</item>
+        <item>Vegetable Pizza</item>
+        <!-- Add more popular food names as needed -->
+    </string-array>
+</resources>
