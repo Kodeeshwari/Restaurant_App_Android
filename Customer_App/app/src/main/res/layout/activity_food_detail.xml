@@ -24,16 +24,14 @@
                 android:id="@+id/txtTitle"
                 style="@style/textViewStyle"
                 android:text="title"
-                android:textColor="@color/darkBlue"
                 android:layout_marginTop="@dimen/dp_30"
-                android:textSize="@dimen/semi_title"
-                android:textStyle="bold" />
+                android:textSize="@dimen/semi_title" />
 
 
             <ImageView
                 android:id="@+id/imgFood"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:src="@drawable/pizza"/>
 
             <LinearLayout
@@ -59,7 +57,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/plusBtn"
+                    android:id="@+id/imgPlus"
                     android:layout_width="@dimen/dp_50"
                     android:layout_height="@dimen/dp_50"
                     android:src="@drawable/plus" />
@@ -78,50 +76,63 @@
                     style="@style/textViewStyle"
                     android:layout_width="wrap_content"
                     android:text="$"
-                    android:textAlignment="center"
                     android:textColor="@color/orange"
-                    android:textSize="22sp"/>
+                    android:textSize="@dimen/text_20"/>
 
                 <TextView
                     android:id="@+id/txtPrice"
                     style="@style/textViewStyle"
                     android:layout_width="wrap_content"
-                    android:minWidth="@dimen/dp_30"
-                    android:text="0"
+                    android:layout_marginLeft="@dimen/dp_4"
+                    android:text="@string/_0_0"
                     android:textAlignment="center"
                     android:textSize="@dimen/text_20" />
 
             </LinearLayout>
             <TextView
                 android:id="@+id/txtDescriptionTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textViewStyle"
                 android:layout_margin="16dp"
+                android:textAlignment="viewStart"
                 android:text="@string/description"
-                android:textColor="@color/ash"
-                android:textSize="@dimen/text_20"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_20" />
             <TextView
-                android:id="@+id/txtDescriptionText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/txtDescription"
+                style="@style/textViewStyle"
+                android:textAlignment="viewStart"
                 android:justificationMode="inter_word"
                 android:layout_marginLeft="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_16"
                 android:text="abc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abcabc abc"
-                android:textColor="@color/ash"
-                android:textStyle="bold" />
+               android:textColor="@color/ash"
+                />
+
+            <TextView
+                android:id="@+id/txtExtrasTitle"
+                style="@style/textViewStyle"
+                android:layout_margin="16dp"
+                android:textAlignment="viewStart"
+                android:text="@string/extra"
+                android:textSize="@dimen/text_20" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewExtras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginTop="16dp"/>
+
         </LinearLayout>
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/txtAddToCartBtn"
+        android:id="@+id/btnAddToCart"
         style="@style/buttonStyle"
         android:text="@string/add_to_cart"
         android:layout_margin="16dp"
-        android:textStyle="bold"
-        android:background="@drawable/orange_button"
-        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         />
 
