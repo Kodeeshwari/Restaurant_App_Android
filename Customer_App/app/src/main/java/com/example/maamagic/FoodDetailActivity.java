@@ -18,6 +18,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     private Button btnAddToCart;
     private ProductDetailModel productDetail;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

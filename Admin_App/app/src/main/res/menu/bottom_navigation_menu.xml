@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <item
+            android:id="@+id/menu_order"
+            android:title="Order"
+            android:icon="@drawable/baseline_reorder_24"/>
+        <item
+            android:id="@+id/menu_catogory"
+            android:title="Category"
+            android:icon="@drawable/baseline_category_24"
+            />
+        <item
+            android:id="@+id/menu_user"
+            android:title="User"
+            android:icon="@drawable/baseline_supervisor_account_24"
+            />
+
+</menu>
