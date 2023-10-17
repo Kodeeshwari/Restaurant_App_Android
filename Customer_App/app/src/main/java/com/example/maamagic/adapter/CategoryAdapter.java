@@ -1,20 +1,29 @@
 package com.example.maamagic.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.maamagic.R;
+import com.example.maamagic.firebase_manager.Utility;
+import com.example.maamagic.models.CategoryModel;
+
+import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    private String[] categoryNames;
+    private ArrayList<CategoryModel> categoryList;
+    private  Context context;
 
-    public CategoryAdapter(String[] categoryNames) {
-        this.categoryNames = categoryNames;
+    public CategoryAdapter(Context context , ArrayList categoryNames) {
+        this.categoryList = categoryNames;
+        this.context = context;
     }
 
     @NonNull
@@ -26,26 +35,35 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String categoryName = categoryNames[position];
-        holder.bind(categoryName);
+        CategoryModel categoryModel = categoryList.get(position);
+        holder.bind(categoryModel,context);
     }
 
     @Override
     public int getItemCount() {
-        return categoryNames.length;
+        return categoryList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView categoryNameTextView;
+        private ImageView categoryImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryNameTextView = itemView.findViewById(R.id.txtCategoryName);
+            categoryImage = itemView.findViewById(R.id.imgFood);
         }
 
-        public void bind(String categoryName) {
-            categoryNameTextView.setText(categoryName);
-        }
+        public void bind(CategoryModel category,Context context) {
+            categoryNameTextView.setText(category.getCategoryName());
+            if (category.getCategoryImage() != null) {
+          //      Utility.loadImage(context, category.getCategoryImage(), categoryImage);
+//                Glide.with(context).load(R.drawable.pizza).into(categoryImage);
+            } else {
+                Utility.showToastShort(context,"image did not find");
+                Glide.with(context).load(R.drawable.pizza).into(categoryImage);
+            }
+    }
     }
 }
 

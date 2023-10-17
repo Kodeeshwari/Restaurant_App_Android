@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/dp_16">
+
+    <ImageView
+        style="@style/imageViewStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/pizza"/>
 
     <TextView
         style="@style/textViewStyle"
-        android:text="@string/app_name"/>
+        android:text="@string/mom_s_magic"
+        android:textSize="@dimen/text_app_name_title" />
 
-</RelativeLayout>
+    <!-- Email -->
+    <EditText
+        android:id="@+id/edtEmail"
+        style="@style/editTextStyle"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:layout_marginTop="@dimen/dp_40" />
+
+    <!-- Password -->
+    <EditText
+        android:id="@+id/edtPassword"
+        style="@style/editTextStyle"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <!-- Remember Me Checkbox -->
+    <CheckBox
+        android:id="@+id/chbRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_me"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/dp_8"
+        />
+
+    <!-- Sign In Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        style="@style/buttonStyle"
+        android:text="@string/sign_in"
+        android:layout_marginTop="@dimen/dp_16" />
+
+    <TextView
+        android:id="@+id/txtSignup"
+        style="@style/textViewStyle"
+        android:layout_marginTop="@dimen/dp_16"
+        android:textSize="@dimen/label_size"
+        android:text="@string/don_t_have_account_sign_up_here"/>
+</LinearLayout>
