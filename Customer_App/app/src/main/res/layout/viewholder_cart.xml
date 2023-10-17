@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/dp_10"
+    android:elevation="@dimen/dp_3"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/imgFood"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/pop_1"/>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/txtFoodName"
+        style="@style/textViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imgFood"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="title"
+        android:textColor="@color/darkBlue"
+        android:textSize="@dimen/text_header"
+        android:textStyle="bold"/>
+
+    <!-- Plus Button -->
+    <ImageView
+        android:id="@+id/plusCartBtn"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/txtFoodName"
+        android:layout_toEndOf="@+id/imgFood"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/plus"/>
+
+    <!-- Count -->
+    <TextView
+        android:id="@+id/numberItemTxt"
+        style="@style/textViewStyle"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/txtFoodName"
+        android:layout_toEndOf="@+id/plusCartBtn"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="1"/>
+
+    <!-- Minus Button -->
+    <ImageView
+        android:id="@+id/imgMinusCart"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/txtFoodName"
+        android:layout_toEndOf="@+id/numberItemTxt"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/minus"/>
+
+    <!-- Price per Item -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/txtFoodName"
+        android:layout_alignParentEnd="true"
+        android:gravity="start"
+
+        >
+    <TextView
+        android:id="@+id/textView23"
+        style="@style/textViewStyle"
+        android:text="$"
+        android:layout_width="wrap_content"
+        android:textColor="@color/darkOrange"
+        android:layout_marginTop="@dimen/dp_16"
+        android:textAlignment="textEnd"
+     />
+
+        <TextView
+            android:id="@+id/txtEachItemPrice"
+            style="@style/textViewStyle"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_4"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:text="0" />
+
+    </LinearLayout>
+
+</RelativeLayout>
