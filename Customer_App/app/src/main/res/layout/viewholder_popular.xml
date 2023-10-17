@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:elevation="@dimen/dp_3"
+    android:id="@+id/llyProduct"
     android:padding="@dimen/dp_10">
 
 

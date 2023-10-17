@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:padding="@dimen/dp_16"
+    android:orientation="vertical"
+    >
+
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/mom_s_magic"
+            android:textSize="@dimen/text_app_name_title" />
+
+
+        <!-- First Name -->
+        <EditText
+            android:id="@+id/edtFirstName"
+            style="@style/editTextStyle"
+            android:hint="@string/first_name"
+            android:layout_marginTop="@dimen/dp_16"/>
+
+        <!-- Last Name -->
+        <EditText
+            android:id="@+id/edtLastName"
+            style="@style/editTextStyle"
+            android:hint="@string/last_name"/>
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/edtEmail"
+            style="@style/editTextStyle"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"/>
+
+        <!-- Password -->
+        <EditText
+            android:id="@+id/edtPassword"
+            style="@style/editTextStyle"
+             android:hint="@string/password"
+            android:inputType="textPassword"/>
+
+        <!-- Confirm Password -->
+        <EditText
+            android:id="@+id/edtConfirmPassword"
+            style="@style/editTextStyle"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"/>
+
+
+        <!-- Address -->
+        <EditText
+            android:id="@+id/edtAddress"
+            style="@style/editTextStyle"
+            android:hint="@string/address"/>
+
+        <!-- Phone Number -->
+        <EditText
+            android:id="@+id/edtPhoneNumber"
+            style="@style/editTextStyle"
+            android:hint="@string/phone_number"
+            android:inputType="phone"/>
+
+        <!-- Sign Up Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignUp"
+            style="@style/buttonStyle"
+            android:text="@string/sign_up"/>
+
+    </LinearLayout>
+

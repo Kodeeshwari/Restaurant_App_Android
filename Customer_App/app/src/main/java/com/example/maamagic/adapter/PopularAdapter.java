@@ -1,11 +1,13 @@
 package com.example.maamagic.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.maamagic.FoodDetailActivity;
 import com.example.maamagic.R;
-import com.example.maamagic.models.FoodDetail;
+import com.example.maamagic.models.ProductDetailModel;
 
 import java.util.ArrayList;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
 
-    ArrayList<FoodDetail> popularFood;
-    public PopularAdapter(ArrayList<FoodDetail> popularFood){
-        this.popularFood = popularFood;
+    ArrayList<ProductDetailModel> productList;
+    public PopularAdapter(Context applicationContext, ArrayList<ProductDetailModel> productList){
+        this.productList = productList;
     }
 
 
@@ -35,27 +37,40 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(popularFood.get(position).getTitle());
-        holder.price.setText(String.valueOf(popularFood.get(position).getPrice()));
+        holder.title.setText(productList.get(position).getTitle());
+        holder.price.setText(String.valueOf(productList.get(position).getPrice()));
 
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getImgFood(), "drawable", holder.itemView.getContext().getPackageName());
+     //   int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(productList.get(position).getImage_url(), "drawable", holder.itemView.getContext().getPackageName());
 
-        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+        holder.llyProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int adapterPosition = holder.getAdapterPosition();
                 if (adapterPosition != RecyclerView.NO_POSITION) {
                     Intent intent = new Intent(holder.itemView.getContext(), FoodDetailActivity.class);
-                    intent.putExtra("Object", (Parcelable) popularFood.get(adapterPosition));
+                    intent.putExtra("Object", productList.get(adapterPosition));
                     holder.itemView.getContext().startActivity(intent);
                 }
+
+            }
+        });
+
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                int adapterPosition = holder.getAdapterPosition();
+//                if (adapterPosition != RecyclerView.NO_POSITION) {
+//                    Intent intent = new Intent(holder.itemView.getContext(), FoodDetailActivity.class);
+//                    intent.putExtra("Object", (Parcelable) productList.get(adapterPosition));
+//                    holder.itemView.getContext().startActivity(intent);
+               // }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return popularFood.size();
+        return productList.size();
     }
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
@@ -63,6 +78,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         TextView title, price;
         ImageView imgFood;
         AppCompatButton btnAdd;
+        LinearLayout llyProduct;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -71,6 +87,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
             imgFood = itemView.findViewById(R.id.imgFood);
             price = itemView.findViewById(R.id.txtPrice);
             btnAdd = itemView.findViewById(R.id.btnAdd);
+            llyProduct = itemView.findViewById(R.id.llyProduct);
 
         }
     }

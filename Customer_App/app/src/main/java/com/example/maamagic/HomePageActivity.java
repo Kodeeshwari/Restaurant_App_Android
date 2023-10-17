@@ -13,6 +13,7 @@ import com.example.maamagic.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomePageActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
