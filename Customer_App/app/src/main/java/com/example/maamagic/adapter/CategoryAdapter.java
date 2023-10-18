@@ -52,6 +52,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             super(itemView);
             categoryNameTextView = itemView.findViewById(R.id.txtCategoryName);
             categoryImage = itemView.findViewById(R.id.imgFood);
+
         }
 
         public void bind(CategoryModel category,Context context) {
@@ -59,6 +60,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             if (category.getCategoryImage() != null) {
           //      Utility.loadImage(context, category.getCategoryImage(), categoryImage);
 //                Glide.with(context).load(R.drawable.pizza).into(categoryImage);
+
             } else {
                 Utility.showToastShort(context,"image did not find");
                 Glide.with(context).load(R.drawable.pizza).into(categoryImage);
