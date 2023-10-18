@@ -94,6 +94,7 @@ public class HomeFragment extends Fragment {
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(requireActivity().getApplicationContext(),data);
         recyclerView.setAdapter(categoryAdapter);
+
     }
 
     private void initializeProductRecyclerView(RecyclerView recyclerView, ArrayList<ProductDetailModel> data) {
