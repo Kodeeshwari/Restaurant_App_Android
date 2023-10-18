@@ -117,6 +117,7 @@ public class HomeFragment extends Fragment {
             public void onFetchCategoriesError(String errorMessage) {
                 Utility.showToastShort(getActivity().getApplicationContext(), errorMessage);
                 Log.e("FirebaseUtility", "Failed to fetch categories: " + errorMessage);
+
             }
         });
     }
