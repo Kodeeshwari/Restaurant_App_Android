@@ -3,12 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame_container"
     tools:context=".fragments.CartItemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ <androidx.recyclerview.widget.RecyclerView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/recyclerViewCart"
+     android:paddingBottom="70dp"
+     tools:listitem="@layout/viewholder_cart"/>
 
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnPayment"
+    style="@style/buttonStyle"
+    android:text="@string/payment"
+    android:padding="@dimen/dp_10"
+    android:layout_margin="@dimen/dp_16"
+    android:layout_alignParentBottom="true"/>
+ </RelativeLayout>
 </FrameLayout>

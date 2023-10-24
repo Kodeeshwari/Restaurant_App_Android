@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             Intent intent = new Intent(LoginActivity.this,HomePageActivity.class);
                             startActivity(intent);
-                            Utility.showToastShort(LoginActivity.this, "Authentication success full.");
                         } else {
                             Utility.showToastShort(LoginActivity.this, "Authentication failed.");
                         }

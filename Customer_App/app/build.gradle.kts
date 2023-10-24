@@ -39,6 +39,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.1.2")
     implementation("com.google.firebase:firebase-database:20.2.2")
+    implementation ("com.stripe:stripe-android:19.0.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -47,7 +48,8 @@ dependencies {
     annotationProcessor("com.jakewharton:butterknife-compiler:10.2.3")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("com.google.code.gson:gson:2.10.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
 }

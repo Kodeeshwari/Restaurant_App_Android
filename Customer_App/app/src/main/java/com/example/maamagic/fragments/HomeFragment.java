@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onProductsFetched(ArrayList<ProductDetailModel> products) {
                 initializeProductRecyclerView(recyclerViewProducts, products);
+
             }
 
             @Override

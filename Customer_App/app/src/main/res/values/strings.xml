@@ -21,4 +21,8 @@
     <string name="don_t_have_account_sign_up_here">Don\'t have Account Sign up here</string>
     <string name="_0_0">0.0</string>
     <string name="extra">extra</string>
+    <string name="price_format">%.2f</string>
+    <string name="payment_button_text">Total Payment: $%s</string>
+    <string name="payment">Payment</string>
+
 </resources>

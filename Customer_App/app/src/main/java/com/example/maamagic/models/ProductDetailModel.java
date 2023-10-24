@@ -1,26 +1,30 @@
 package com.example.maamagic.models;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class ProductDetailModel implements Serializable {
 
     private String productId;
     private String categoryId;
-    private String title;
-    private String image_url;
-    private String description;
-    private double price;
-    private boolean is_available;
+    private String productTitle;
+    private String productImageURL;
+    private String productDescription;
+    private double productPrice;
+    private boolean productIsAvailable;
+    private HashMap<String,ExtraModel> productExtras;
 
     public  ProductDetailModel(){};
-    public ProductDetailModel(String productId, String categoryId, String title, String image_url, String description, double price, boolean is_available) {
+
+    public ProductDetailModel(String productId, String categoryId, String productTitle, String productImageURL, String productDescription, double productPrice, boolean productIsAvailable, HashMap<String, ExtraModel> productExtras) {
         this.productId = productId;
         this.categoryId = categoryId;
-        this.title = title;
-        this.image_url = image_url;
-        this.description = description;
-        this.price = price;
-        this.is_available = is_available;
+        this.productTitle = productTitle;
+        this.productImageURL = productImageURL;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productIsAvailable = productIsAvailable;
+        this.productExtras = productExtras;
     }
 
     public String getProductId() {
@@ -39,43 +43,60 @@ public class ProductDetailModel implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getProductImageURL() {
+        return productImageURL;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setProductImageURL(String productImageURL) {
+        this.productImageURL = productImageURL;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
-    public double getPrice() {
-        return price;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public boolean isIs_available() {
-        return is_available;
+    public boolean isProductIsAvailable() {
+        return productIsAvailable;
     }
 
-    public void setIs_available(boolean is_available) {
-        this.is_available = is_available;
+    public void setProductIsAvailable(boolean productIsAvailable) {
+        this.productIsAvailable = productIsAvailable;
     }
+    public HashMap<String, ExtraModel> getProductExtras() {
+        return productExtras;
+    }
+
+    public void setProductExtras(HashMap<String, ExtraModel> productExtras) {
+        this.productExtras = productExtras;
+    }
+
+    // Method to add an extra to the extras HashMap
+    public void addExtra(String extraId, ExtraModel extra) {
+        if (productExtras == null) {
+            productExtras = new HashMap<>();
+        }
+        productExtras.put(extraId, extra);
+    }
+
+
 }

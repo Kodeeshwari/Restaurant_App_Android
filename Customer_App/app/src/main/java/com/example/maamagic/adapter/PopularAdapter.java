@@ -2,7 +2,6 @@ package com.example.maamagic.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +36,8 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(productList.get(position).getTitle());
-        holder.price.setText(String.valueOf(productList.get(position).getPrice()));
+        holder.title.setText(productList.get(position).getProductTitle());
+        holder.price.setText(String.valueOf(productList.get(position).getProductPrice()));
 
      //   int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(productList.get(position).getImage_url(), "drawable", holder.itemView.getContext().getPackageName());
 
@@ -47,11 +46,12 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
             public void onClick(View v) {
                 int adapterPosition = holder.getAdapterPosition();
                 if (adapterPosition != RecyclerView.NO_POSITION) {
+                    String productId = productList.get(adapterPosition).getProductId();
                     Intent intent = new Intent(holder.itemView.getContext(), FoodDetailActivity.class);
-                    intent.putExtra("Object", productList.get(adapterPosition));
+            //        intent.putExtra("Object", productList.get(position).getProductId());
+                    intent.putExtra("productId", productId);
                     holder.itemView.getContext().startActivity(intent);
                 }
-
             }
         });
 

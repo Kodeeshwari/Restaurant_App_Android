@@ -15,7 +15,7 @@
 
     <!-- Title -->
     <TextView
-        android:id="@+id/txtFoodName"
+        android:id="@+id/txtProductName"
         style="@style/textViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,39 +27,41 @@
         android:textSize="@dimen/text_header"
         android:textStyle="bold"/>
 
-    <!-- Plus Button -->
-    <ImageView
-        android:id="@+id/plusCartBtn"
-        android:layout_width="@dimen/dp_50"
-        android:layout_height="@dimen/dp_50"
-        android:layout_below="@+id/txtFoodName"
-        android:layout_toEndOf="@+id/imgFood"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/plus"/>
-
-    <!-- Count -->
-    <TextView
-        android:id="@+id/numberItemTxt"
-        style="@style/textViewStyle"
-        android:layout_width="@dimen/dp_50"
-        android:layout_height="@dimen/dp_50"
-        android:layout_below="@+id/txtFoodName"
-        android:layout_toEndOf="@+id/plusCartBtn"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:text="1"/>
 
     <!-- Minus Button -->
     <ImageView
         android:id="@+id/imgMinusCart"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
-        android:layout_below="@+id/txtFoodName"
-        android:layout_toEndOf="@+id/numberItemTxt"
+        android:layout_below="@+id/txtProductName"
+        android:layout_toEndOf="@+id/imgFood"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/minus"/>
+
+    <!-- Count -->
+    <TextView
+        android:id="@+id/txtProductQuantity"
+        style="@style/textViewStyle"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/txtProductName"
+        android:layout_toEndOf="@+id/imgMinusCart"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="1"/>
+
+
+    <!-- Plus Button -->
+    <ImageView
+        android:id="@+id/imgPlusCart"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/txtProductName"
+        android:layout_toEndOf="@+id/txtProductQuantity"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/plus"/>
 
     <!-- Price per Item -->
 
@@ -67,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/txtFoodName"
+        android:layout_below="@+id/txtProductName"
         android:layout_alignParentEnd="true"
         android:gravity="start"
 
@@ -83,7 +85,7 @@
      />
 
         <TextView
-            android:id="@+id/txtEachItemPrice"
+            android:id="@+id/txtProductPrice"
             style="@style/textViewStyle"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_16"
