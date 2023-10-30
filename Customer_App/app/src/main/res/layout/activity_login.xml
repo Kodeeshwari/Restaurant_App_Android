@@ -10,9 +10,7 @@
     android:padding="@dimen/dp_16">
 
     <ImageView
-        style="@style/imageViewStyle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        style="@style/CircularImageView"
         android:src="@drawable/pizza"/>
 
     <TextView
@@ -36,14 +34,6 @@
         android:inputType="textPassword" />
 
     <!-- Remember Me Checkbox -->
-    <CheckBox
-        android:id="@+id/chbRememberMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/remember_me"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="@dimen/dp_8"
-        />
 
     <!-- Sign In Button -->
     <androidx.appcompat.widget.AppCompatButton

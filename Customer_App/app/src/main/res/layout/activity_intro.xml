@@ -17,17 +17,20 @@
         android:weightSum="3">
 
         <TextView
+            android:textColor="@color/white"
             style="@style/textViewStyle"
+            android:layout_weight="1"
             android:text="@string/mom_s_magic"
-            android:textSize="@dimen/text_app_name_title"
-            android:layout_weight="1"/>
+            android:textSize="@dimen/text_app_name_title" />
 
         <ImageView
-            style="@style/imageViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:src="@drawable/logo"
             android:layout_weight="1"/>
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/textView2"
             style="@style/textViewStyle"
             android:text="@string/food_delivery_app"

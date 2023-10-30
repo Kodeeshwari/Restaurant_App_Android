@@ -1,45 +1,48 @@
 package com.example.maamagic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.maamagic.ProductDetailActivity;
 import com.example.maamagic.R;
+import com.example.maamagic.adapter.BannerSliderAdapter;
 import com.example.maamagic.adapter.CategoryAdapter;
-import com.example.maamagic.adapter.PopularAdapter;
+import com.example.maamagic.adapter.ProductCardListAdapater;
 import com.example.maamagic.firebase_manager.CategoryFirebaseManager;
 import com.example.maamagic.firebase_manager.ProductFirebaseManager;
+import com.example.maamagic.firebase_manager.SliderFirebaseManager;
+import com.example.maamagic.firebase_manager.UserFirebaseManager;
 import com.example.maamagic.firebase_manager.Utility;
+import com.example.maamagic.interfaces.ProductCardEventListener;
 import com.example.maamagic.models.CategoryModel;
 import com.example.maamagic.models.ProductDetailModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.maamagic.models.SliderItem;
 
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ProductCardEventListener {
 
-    private RecyclerView recyclerViewCategories, recyclerViewProducts;
-    private CategoryModel categoryModel;
-    private ProductDetailModel productDetailModel;
-
-    private ArrayList<ProductDetailModel> products;
-
-    CategoryFirebaseManager categoryFirebaseManager;
-    ProductFirebaseManager productFirebaseManager;
-    private DatabaseReference mDatabaseCategory, mDatabaseProduct;
+    private RecyclerView recyclerViewCategories;
+    private RecyclerView productReclyView;
+    private UserFirebaseManager userFirebaseManager;
+    private CategoryFirebaseManager categoryFirebaseManager;
+    private ProductFirebaseManager productFirebaseManager;
+    private SliderFirebaseManager sliderFirebaseManager;
+    private ViewPager2 sliderImageViewPager;
+    private TextView userNameTv;
 
 
     public HomeFragment() {
@@ -54,10 +57,10 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabaseCategory = FirebaseDatabase.getInstance().getReference().child("categories");
-        mDatabaseProduct = FirebaseDatabase.getInstance().getReference().child("products");
         categoryFirebaseManager = new CategoryFirebaseManager();
         productFirebaseManager = new ProductFirebaseManager();
+        sliderFirebaseManager = new SliderFirebaseManager();
+        userFirebaseManager =new UserFirebaseManager();
     }
 
     @Override
@@ -65,18 +68,43 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewCategories = view.findViewById(R.id.recyclerViewCategory);
-        recyclerViewProducts = view.findViewById(R.id.recyclerViewPopular);
+        productReclyView = view.findViewById(R.id.productGridView);
+
+        sliderImageViewPager = view.findViewById(R.id.viewPager);
+        userNameTv = view.findViewById(R.id.txtUsername);
+
+        userNameTv.setText("Welcome Back, "+userFirebaseManager.getCurrentUsername());
         fetchCategories();
         fetchProducts();
+        fetchSlider();
 
         return view;
+    }
+
+    private void fetchSlider() {
+
+        sliderFirebaseManager.fetchSliderItems(new SliderFirebaseManager.SliderFetchListener() {
+            @Override
+            public void onSliderItemsFetched(List<SliderItem> sliderItems) {
+                BannerSliderAdapter bannerSliderAdapter = new BannerSliderAdapter(sliderItems);
+                sliderImageViewPager.setAdapter(bannerSliderAdapter);
+            }
+
+            @Override
+            public void onFetchSliderItemsError(String errorMessage) {
+
+            }
+        });
+
+
     }
 
     private void fetchProducts() {
         productFirebaseManager.fetchProducts(new ProductFirebaseManager.ProductFetchListener() {
             @Override
             public void onProductsFetched(ArrayList<ProductDetailModel> products) {
-                initializeProductRecyclerView(recyclerViewProducts, products);
+                initializeProductRecyclerView(productReclyView, products);
+
             }
 
             @Override
@@ -92,16 +120,14 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        CategoryAdapter categoryAdapter = new CategoryAdapter(requireActivity().getApplicationContext(),data);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(requireActivity().getApplicationContext(), data);
         recyclerView.setAdapter(categoryAdapter);
     }
 
-    private void initializeProductRecyclerView(RecyclerView recyclerView, ArrayList<ProductDetailModel> data) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-
-        PopularAdapter productAdapter = new PopularAdapter(requireActivity().getApplicationContext(),data);
-        recyclerView.setAdapter(productAdapter);
+    private void initializeProductRecyclerView(RecyclerView productReclyView, ArrayList<ProductDetailModel> data) {
+        productReclyView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        ProductCardListAdapater adapter = new ProductCardListAdapater(requireContext(),data,this);
+        productReclyView.setAdapter(adapter);
     }
 
 
@@ -118,5 +144,19 @@ public class HomeFragment extends Fragment {
                 Log.e("FirebaseUtility", "Failed to fetch categories: " + errorMessage);
             }
         });
+    }
+
+    @Override
+    public void onItemClick(String productId) {
+        final Intent intent = new Intent(requireContext(), ProductDetailActivity.class);
+        intent.putExtra("productId",productId);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onAddButtonClick(String productId) {
+        final Intent intent = new Intent(requireContext(), ProductDetailActivity.class);
+        intent.putExtra("productId",productId);
+        startActivity(intent);
     }
 }

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:elevation="@dimen/dp_3"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llyProduct"
-    android:padding="@dimen/dp_10">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_corners"
+    android:elevation="@dimen/dp_4"
+    android:gravity="center_horizontal"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="10dp">
 
 
     <TextView
         android:id="@+id/txtTitle"
         style="@style/textViewStyle"
-        android:layout_margin="@dimen/dp_4"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
         android:text="title"
         android:textColor="@color/black"
         android:textSize="@dimen/label_size"
@@ -21,12 +25,12 @@
 
     <ImageView
         android:id="@+id/imgFood"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:src="@drawable/pop_1"
-        app:srcCompat="@drawable/pop_1" />
+        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        style="@style/CircularImageView"
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/pop_1"
+        tools:srcCompact="" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,24 +46,29 @@
             android:layout_marginEnd="3dp"
             android:text="$"
             android:textColor="@color/darkOrange"
-            android:textSize="@dimen/label_size"
-            />
+            android:textSize="@dimen/label_size" />
+
         <TextView
-        android:id="@+id/txtPrice"
-        style="@style/textViewStyle"
+            android:id="@+id/txtPrice"
+            style="@style/textViewStyle"
             android:layout_width="wrap_content"
-        android:text="0.0"
-        android:textColor="@color/darkBlue"
-        android:textSize="@dimen/text_header"
-        android:textStyle="bold" />
+            android:text="0.0"
+            android:textColor="@color/darkBlue"
+            android:textSize="@dimen/text_header"
+            android:textStyle="bold" />
 
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
+
+    <TextView
         android:id="@+id/btnAdd"
         style="@style/buttonStyle"
-        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/orange_button"
-        android:padding="@dimen/dp_10"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:text="+Add"
         android:textAlignment="center"
         android:textColor="@color/white"
