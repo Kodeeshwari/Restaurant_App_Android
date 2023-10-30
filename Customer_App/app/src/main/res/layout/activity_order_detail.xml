@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+     tools:context=".OrderDetailActivity"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="@dimen/dp_10"
+    style="@style/MyLinearLayoutStyle">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ScrollViewCount">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/dp_16"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtReceiptNo"
+        style="@style/textViewStyle"
+        android:text="123456789" />
+
+
+    <TextView
+        android:id="@+id/txtTimeStamp"
+        style="@style/textViewStyle"
+        android:text="11:49pm"
+        android:layout_marginTop="@dimen/dp_8"/>
+
+    <TextView
+        android:id="@+id/txtOrderStatus"
+        style="@style/textViewStyle"
+        android:text="Pending"
+        android:layout_marginTop="@dimen/dp_8"/>
+
+
+        <TextView
+            style="@style/textViewStyle"
+            android:text="Order"
+            android:layout_marginTop="@dimen/dp_16"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerViewOrderCart"
+            android:layout_marginTop="@dimen/dp_8"
+        />
+
+        <TextView
+            style="@style/textViewStyle"
+            android:text="Payment"
+            android:layout_marginTop="@dimen/dp_16"/>
+
+    <!-- Payment Status -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            style="@style/textViewStyle"
+            android:layout_width="wrap_content"
+            android:text="Order Status: " />
+
+        <TextView
+            android:id="@+id/txtPaymentStatus"
+            style="@style/textViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Pending" />
+    </LinearLayout>
+
+        <!--Payment type  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:text="Payment type: " />
+
+            <TextView
+                android:id="@+id/txtPaymentType"
+                style="@style/textViewStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Debit" />
+        </LinearLayout>
+
+        <!--Card details  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:text="Card number: " />
+
+            <TextView
+                android:id="@+id/txtCardNumber"
+                style="@style/textViewStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="1234 1234 1234 1234" />
+        </LinearLayout>
+
+
+        <!--Payment time  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:text="Payment Time: " />
+
+            <TextView
+                android:id="@+id/txtPaymentTime"
+                style="@style/textViewStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="12/02/24 12:35" />
+        </LinearLayout>
+
+        <!--Payment time  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                style="@style/textViewStyle"
+                android:layout_width="wrap_content"
+                android:text="Total Price: " />
+
+            <TextView
+                android:id="@+id/txtFinalAmount"
+                style="@style/textViewStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="$1234" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
+</LinearLayout>

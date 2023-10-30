@@ -7,7 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_to_cart">Add to Cart</string>
-    <string name="description">description</string>
+    <string name="description">Description</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>
@@ -20,9 +20,12 @@
     <string name="sign_in">Login</string>
     <string name="don_t_have_account_sign_up_here">Don\'t have Account Sign up here</string>
     <string name="_0_0">0.0</string>
-    <string name="extra">extra</string>
+    <string name="extra">Extra Addone</string>
     <string name="price_format">%.2f</string>
-    <string name="payment_button_text">Total Payment: $%s</string>
+    <string name="payment_button_text">Checkout: $%s</string>
     <string name="payment">Payment</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="name">name</string>
 
 </resources>

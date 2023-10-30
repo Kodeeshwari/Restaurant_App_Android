@@ -7,9 +7,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.maamagic.models.CartItem;
-import com.example.maamagic.models.CategoryModel;
-import com.example.maamagic.models.ExtraModel;
-import com.example.maamagic.models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 public class CartFirebaseManager extends FirebaseManager{
     private DatabaseReference cartItemsRef;
@@ -36,13 +32,9 @@ public class CartFirebaseManager extends FirebaseManager{
     }
 
     public String generateUniqueExtraId() {
-        // Implement your logic to generate a unique extra ID, for example, using UUID.randomUUID().
-        // Return the generated unique extra ID.
         return cartItemsRef.push().getKey();
     }
 
-    public void saveExtraItem(String uniqueExtraId, ExtraModel extraModel) {
-    }
 
     public void addCartItem(String userId, CartItem cartItem) {
         // Add a new cart item to the user's cart in Firebase Database
@@ -55,16 +47,19 @@ public class CartFirebaseManager extends FirebaseManager{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 cartItemList.clear();
+                HashMap<String, CartItem> cartItemMap = new HashMap<>();
+
                 for (DataSnapshot cartItemSnapshot : dataSnapshot.getChildren()) {
                     CartItem cartItem = cartItemSnapshot.getValue(CartItem.class);
                     if (cartItem != null) {
                         cartId = cartItemSnapshot.getKey();
                         cartItem.setCartId(cartItemSnapshot.getKey());
                         cartItemList.add(cartItem);
+                        cartItemMap.put(cartId, cartItem);
                         Log.d(TAG, "onDataChange: "+ cartItemList.toString());
                     }
                 }
-                notifyCartListenerSuccess(listener, cartItemList,cartId);
+                notifyCartListenerSuccess(listener, cartItemList,cartId,cartItemMap);
                 // Here, you can pass the cartId to the listener
 
             }
@@ -86,9 +81,9 @@ public class CartFirebaseManager extends FirebaseManager{
 
         cartItemsRef.child(userId).child(cartItemId).updateChildren(updateFields);
     }
-    private void notifyCartListenerSuccess(CartFetchListener listener, List<CartItem> carts,String cartId) {
+    private void notifyCartListenerSuccess(CartFetchListener listener, List<CartItem> carts, String cartId, HashMap<String, CartItem> cartItemMap) {
         if (listener != null) {
-            listener.onCartsFetched(carts,cartId);
+            listener.onCartsFetched(carts,cartId,cartItemMap);
         }
     }
 
@@ -99,7 +94,7 @@ public class CartFirebaseManager extends FirebaseManager{
     }
 
     public interface CartFetchListener {
-        void onCartsFetched(List<CartItem> carts,String cartId);
+        void onCartsFetched(List<CartItem> carts, String cartId, HashMap<String, CartItem> cartItemMap);
         void onFetchCartsError(String errorMessage);
     }
 
@@ -108,6 +103,12 @@ public class CartFirebaseManager extends FirebaseManager{
         return cartItemsRef.child(userId);
     }
 
+    public void removeCartItem(String userId) {
+        // Remove the cart item with specified cartItemId from the user's cart in Firebase Database
+        cartItemsRef.child(userId).removeValue()
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "CartItem removed successfully"))
+                .addOnFailureListener(e -> Log.e(TAG, "Error removing cartItem: " + e.getMessage()));
+    }
 
 
 }

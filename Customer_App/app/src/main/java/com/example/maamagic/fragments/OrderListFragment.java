@@ -14,11 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.maamagic.R;
+import com.example.maamagic.adapter.CartItemAdapter;
 import com.example.maamagic.adapter.OrderListAdapter;
+import com.example.maamagic.firebase_manager.OrderFirebaseManager;
+import com.example.maamagic.interfaces.OrderInterfaces;
 import com.example.maamagic.models.OrderItemModel;
+import com.example.maamagic.models.OrderModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 
 public class OrderListFragment extends Fragment {
@@ -26,6 +31,9 @@ public class OrderListFragment extends Fragment {
     private RecyclerView recyclerViewOrders;
     private List<OrderItemModel> orderItemList;
     private OrderListAdapter orderListAdapter;
+    private OrderModel orderModel;
+    private OrderFirebaseManager orderFirebaseManager;
+
     public OrderListFragment() {
         // Required empty public constructor
     }
@@ -54,15 +62,36 @@ public class OrderListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
         recyclerViewOrders = view.findViewById(R.id.recyclerViewOrders);
-        // Initialize orderItemList and orderListAdapter here, and set up the RecyclerView
+        orderFirebaseManager = new OrderFirebaseManager();
+        orderModel = new OrderModel();
 
-        // Example initialization of orderItemList and orderListAdapter
-        orderItemList = new ArrayList<>();
-        orderListAdapter = new OrderListAdapter(orderItemList);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerViewOrders.setLayoutManager(layoutManager);
-        recyclerViewOrders.setAdapter(orderListAdapter);
+        loadOrder();
 
         return view;    }
+
+    private void loadOrder() {
+
+        orderFirebaseManager.fetchOrder(new OrderInterfaces() {
+            @Override
+            public void onOrderFetched(ArrayList<OrderModel> order) {
+                ArrayList<OrderModel> orderModels = new ArrayList<>(order);
+                initialiseOrderListAdapter(orderModels);
+            }
+
+            @Override
+            public void onFetchError(String errorMessage) {
+
+            }
+        });
+
+    }
+
+    private void initialiseOrderListAdapter(ArrayList<OrderModel> data) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewOrders.setLayoutManager(layoutManager);
+
+        OrderListAdapter orderListAdapter = new OrderListAdapter(requireActivity().getApplicationContext(),data);
+        recyclerViewOrders.setAdapter(orderListAdapter);
+
+    }
 }

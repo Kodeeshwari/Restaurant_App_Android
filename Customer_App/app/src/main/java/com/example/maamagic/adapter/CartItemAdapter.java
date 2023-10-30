@@ -1,7 +1,6 @@
 package com.example.maamagic.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.maamagic.FoodDetailActivity;
 import com.example.maamagic.R;
 import com.example.maamagic.firebase_manager.CartFirebaseManager;
+import com.example.maamagic.firebase_manager.Utility;
 import com.example.maamagic.models.CartItem;
 
 import java.util.List;
@@ -22,10 +21,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
     private List<CartItem> cartItemList;
     private CartFirebaseManager cartFirebaseManager = new CartFirebaseManager();
 
+    private Context context;
 
-    public CartItemAdapter(List<CartItem> cartItemList) {
+    public CartItemAdapter(Context context,List<CartItem> cartItemList) {
         this.cartItemList = cartItemList;
         cartFirebaseManager = new CartFirebaseManager();
+        this.context = context;
     }
 
     @NonNull
@@ -63,7 +64,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView txtProductName, txtProductPrice,txtProductQuantity;
-        private ImageView plusCartBtn, minusCartBtn;
+        private ImageView plusCartBtn, minusCartBtn,imgCartProduct;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,6 +74,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             txtProductQuantity = itemView.findViewById(R.id.txtProductQuantity);
             plusCartBtn = itemView.findViewById(R.id.imgPlusCart);
             minusCartBtn = itemView.findViewById(R.id.imgMinusCart);
+            imgCartProduct = itemView.findViewById(R.id.imgCartProduct);
 
             plusCartBtn.setOnClickListener(v -> {
                 int quantity = Integer.parseInt(txtProductQuantity.getText().toString());
@@ -117,6 +119,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             txtProductName.setText(cartItem.getItemName());
             txtProductPrice.setText(String.valueOf(cartItem.getTotalPrice()));
             txtProductQuantity.setText(String.valueOf(cartItem.getQuantity()));
+            Utility.loadImage(context,cartItem.getImgProduct(),imgCartProduct);
         }
     }
 }

@@ -54,7 +54,15 @@ public class ExtraAdapter extends RecyclerView.Adapter<ExtraAdapter.ViewHolder> 
                 extraModel.setSelected(!extraModel.isSelected());
                 extraSelectionListener.onExtraSelected(extraModel);
             });
+
+            holder.checkBox.setOnClickListener(v -> {
+                holder.checkBox.setChecked(!extraModel.isSelected());
+                extraModel.setSelected(!extraModel.isSelected());
+                extraSelectionListener.onExtraSelected(extraModel);
+            });
+
         }
+
     }
     public interface ExtraSelectionListener {
         void onExtraSelected(ExtraModel extraModel);
@@ -76,6 +84,13 @@ public class ExtraAdapter extends RecyclerView.Adapter<ExtraAdapter.ViewHolder> 
             checkBox = itemView.findViewById(R.id.checkBox);
 
             itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    toggleSelection(position);
+                }
+            });
+
+            checkBox.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
                     toggleSelection(position);

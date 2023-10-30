@@ -1,6 +1,7 @@
 package com.example.maamagic.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductDetailModel implements Serializable {
@@ -12,6 +13,8 @@ public class ProductDetailModel implements Serializable {
     private String productDescription;
     private double productPrice;
     private boolean productIsAvailable;
+
+
     private HashMap<String,ExtraModel> productExtras;
 
     public  ProductDetailModel(){};

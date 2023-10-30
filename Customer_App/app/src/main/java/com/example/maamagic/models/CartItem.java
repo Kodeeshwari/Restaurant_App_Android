@@ -9,46 +9,28 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class CartItem implements Serializable, Parcelable {
+public class CartItem implements Serializable {
     private String cartId;
     private String itemName;
     private int quantity;
     private double totalPrice;
     private double itemPrice;
+    private  String  imgProduct;
 
     private HashMap<String,ExtraModel>  selectedExtras; // List of selected ExtraModel objects
 
 
     public  CartItem(){}
 
-    public CartItem(String cartId, String itemName, int quantity, double totalPrice, double itemPrice, HashMap<String, ExtraModel> selectedExtras) {
+    public CartItem(String cartId, String itemName, int quantity, double totalPrice, double itemPrice, HashMap<String, ExtraModel> selectedExtras,String imgProduct) {
         this.cartId = cartId;
         this.itemName = itemName;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
         this.itemPrice = itemPrice;
         this.selectedExtras = selectedExtras;
+        this.imgProduct = imgProduct;
     }
-
-    protected CartItem(Parcel in) {
-        cartId = in.readString();
-        itemName = in.readString();
-        quantity = in.readInt();
-        totalPrice = in.readDouble();
-        itemPrice = in.readDouble();
-    }
-
-    public static final Creator<CartItem> CREATOR = new Creator<CartItem>() {
-        @Override
-        public CartItem createFromParcel(Parcel in) {
-            return new CartItem(in);
-        }
-
-        @Override
-        public CartItem[] newArray(int size) {
-            return new CartItem[size];
-        }
-    };
 
     public String getCartId() {
         return cartId;
@@ -98,17 +80,11 @@ public class CartItem implements Serializable, Parcelable {
         this.selectedExtras = selectedExtras;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getImgProduct() {
+        return imgProduct;
     }
 
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(cartId);
-        dest.writeString(itemName);
-        dest.writeInt(quantity);
-        dest.writeDouble(totalPrice);
-        dest.writeDouble(itemPrice);
+    public void setImgProduct(String imgProduct) {
+        this.imgProduct = imgProduct;
     }
 }

@@ -19,14 +19,12 @@ import com.example.maamagic.models.CartItem;
 import com.example.maamagic.models.ExtraModel;
 import com.example.maamagic.models.ProductDetailModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapter.ExtraSelectionListener {
+public class ProductDetailActivity extends AppCompatActivity implements ExtraAdapter.ExtraSelectionListener {
 
     public static final int REQUEST_CODE_FOOD_DETAIL = 1;
 
@@ -35,13 +33,15 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
     private Button btnAddToCart;
     private ProductDetailModel productDetail;
     private ArrayList<ExtraModel> extrasList;
-    private String productName;
-    private double totalPrice = 0.0;
+    private String productName,imgProductUrl;
+    private double productPrice = 0.0;
+
+    private double totalPriceWithExtra=0.0;
     private int itemCount = 1;
     private String userId;
 
 
-    private ImageView imgPlus, imgMinus;
+    private ImageView imgPlus, imgMinus,imgProduct;
     private ProductFirebaseManager productFirebaseManager;
     private CartFirebaseManager cartFirebaseManager;
 
@@ -61,6 +61,7 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
         btnAddToCart = findViewById(R.id.btnAddToCart);
         imgMinus = findViewById(R.id.imgMinus);
         imgPlus = findViewById(R.id.imgPlus);
+        imgProduct = findViewById(R.id.imgFood);
         productFirebaseManager = new ProductFirebaseManager();
         cartFirebaseManager = new CartFirebaseManager();
 
@@ -113,16 +114,19 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
     }
 
     private void updateUI(ProductDetailModel product) {
-        totalPrice = product.getProductPrice();
+        productPrice = product.getProductPrice();
         productName = product.getProductTitle();
+        imgProductUrl = product.getProductImageURL();
         txtTitle.setText(productName);
         txtPrice.setText(getString(R.string.price_format, product.getProductPrice())); // Assuming you have a string resource for price format
         txtDescription.setText(product.getProductDescription());
+        Utility.loadImage(this,product.getProductImageURL(),imgProduct);
+
 
         HashMap<String, ExtraModel> extras = product.getProductExtras();
         if (extras != null && !extras.isEmpty()) {
             List<ExtraModel> extraList = new ArrayList<>(extras.values());
-            ExtraAdapter extraAdapter = new ExtraAdapter(extraList, FoodDetailActivity.this);
+            ExtraAdapter extraAdapter = new ExtraAdapter(extraList, ProductDetailActivity.this);
             recyclerViewExtras.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             recyclerViewExtras.setAdapter(extraAdapter);
         }
@@ -132,26 +136,26 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
     @Override
     public void onExtraSelected(ExtraModel extraModel) {
         double extraPrice = extraModel.getPrice();
-        if (itemCount > 0) {
+        if (itemCount >= 1) {
             if (extraModel.isSelected()) {
                 // If extra is selected, add its price multiplied by itemCount to the total price
-                totalPrice += (extraPrice * itemCount);
+                productPrice += (extraPrice * itemCount);
                 selectedExtras.add(extraModel);
             } else {
                 // If extra is deselected, subtract its price multiplied by itemCount from the total price
-                totalPrice -= (extraPrice * itemCount);
+                productPrice -= (extraPrice * itemCount);
                 selectedExtras.remove(extraModel);
             }
         } else {
             // If no items are selected, set the total price to 0
-            totalPrice = 0.0;
+            productPrice = 0.0;
         }
         updatePriceAndCount();
     }
 
     private void setupButtonClickListeners(ProductDetailModel product) {
         imgPlus.setOnClickListener(v -> {
-            totalPrice += product.getProductPrice();
+            productPrice += product.getProductPrice();
             updateExtrasPrice();
             itemCount++;
             String count = String.valueOf(itemCount);
@@ -160,18 +164,13 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
         });
 
         imgMinus.setOnClickListener(v -> {
-            if (itemCount >= 1) {
-                totalPrice -= product.getProductPrice();
+            if (itemCount > 1) {
+                productPrice -= product.getProductPrice();
                 updateExtrasPrice();
                 itemCount--;
                 String count = String.valueOf(itemCount);
                 txtCount.setText(count);
                 updatePriceAndCount();
-            } else {
-                itemCount = 0;
-                totalPrice = 0.0;
-                txtCount.setText("0");
-                txtPrice.setText(getString(R.string.price_format, totalPrice));
             }
         });
 
@@ -185,8 +184,9 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
                 CartItem cartItem = new CartItem();
                 cartItem.setItemName(productName); // Set the product ID
                 cartItem.setQuantity(itemCount); // Set the quantity
-                cartItem.setTotalPrice(totalPrice); // Set the total price
-                double newPrice = totalPrice / itemCount;
+                cartItem.setTotalPrice(productPrice); // Set the total price
+                cartItem.setImgProduct(imgProductUrl);
+                double newPrice = productPrice / itemCount;
                 String formattedPrice = String.format("%.2f", newPrice);
                 double roundedPrice = Double.parseDouble(formattedPrice);
                 cartItem.setItemPrice(roundedPrice);
@@ -209,40 +209,10 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
                 cartFirebaseManager.addCartItem(userId, cartItem);
                 finish();
             } else {
-                Utility.showToastShort(FoodDetailActivity.this, "data did not found.");
+                Utility.showToastShort(ProductDetailActivity.this, "data did not found.");
             }
         });
 
-//        btnAddToCart.setOnClickListener(v -> {
-//            if (itemCount > 0) {
-//                // Create a CartItem object representing the item to be added to the cart
-//                CartItem cartItem = new CartItem();
-//                cartItem.setItemName(productName); // Set the product ID
-//                cartItem.setQuantity(itemCount); // Set the quantity
-//                cartItem.setTotalPrice(totalPrice); // Set the total price
-//                double newPrice = totalPrice / itemCount;
-//                String formattedPrice = String.format("%.2f", newPrice);
-//                double roundedPrice = Double.parseDouble(formattedPrice);
-//                cartItem.setItemPrice(roundedPrice);
-//
-//                // Generate a unique extra ID for the selected extras
-//                String uniqueExtraId = cartFirebaseManager.generateUniqueExtraId();
-//
-//                // Save the selected extras with the unique extra ID
-//                for (ExtraModel selectedExtra : selectedExtras) {
-//                    cartFirebaseManager.saveExtraItem(uniqueExtraId, selectedExtra);
-//                }
-//
-//                // Set the unique extra ID in the cart item
-////                cartItem.setUniqueExtraId(uniqueExtraId);
-//
-//                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                cartFirebaseManager.addCartItem(userId, cartItem);
-//                finish();
-//            } else {
-//                Utility.showToastShort(FoodDetailActivity.this, "Data not found.");
-//            }
-//        });
 
     }
 
@@ -250,25 +220,22 @@ public class FoodDetailActivity extends AppCompatActivity implements ExtraAdapte
         if (extrasList != null) {
             for (ExtraModel extraModel : extrasList) {
                 if (extraModel.isSelected()) {
-                    totalPrice += extraModel.getPrice() * itemCount;
+                    productPrice += extraModel.getPrice() * itemCount;
                 }
             }
         }
     }
 
     private void updatePriceAndCount() {
-        txtPrice.setText(getString(R.string.price_format, totalPrice));
+        txtPrice.setText(getString(R.string.price_format, productPrice));
+        btnAddToCart.setText("Add Item $"+getString(R.string.price_format, productPrice));
 
     }
 
     private void handleProductNotFound() {
-        Utility.showToastShort(FoodDetailActivity.this, "data did not found.");
+        Utility.showToastShort(ProductDetailActivity.this, "data did not found.");
     }
 
-    private void initializeExtraRecyclerView(RecyclerView recyclerView, ArrayList<ExtraModel> data) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(FoodDetailActivity.this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
 
-    }
 
 }

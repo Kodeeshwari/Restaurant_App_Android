@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class    LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.edtEmail)
     EditText editTextEmail;
@@ -31,8 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.btnLogin)
     AppCompatButton btnLogin;
 
-    @BindView(R.id.chbRememberMe)
-    CheckBox checkBoxRememberMe;
 
     @BindView(R.id.txtSignup)
     TextView txtSignup;
@@ -81,11 +79,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-//         email = editTextEmail.getText().toString().trim();
-//            password = editTextPassword.getText().toString().trim();
 
-        email = "vi@gmail.com";
-        password = "qwerty";
+        email = editTextEmail.getText().toString().trim();
+         password = editTextPassword.getText().toString().trim();
 
 
 
