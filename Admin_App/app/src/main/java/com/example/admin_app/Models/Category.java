@@ -1,28 +1,33 @@
 package com.example.admin_app.Models;
 
 public class Category {
-    private String categoryID;
+    private String categoryId;
     private String categoryName;
-    private String image_url;
-    private String description;
+    private String categoryImage;
+    private String categoryDescription;
 
     public Category() {
 
     }
 
-    public Category(String categoryID, String categoryName, String image_url, String description) {
-        this.categoryID = categoryID;
+    public Category(String categoryId, String categoryName, String image_url, String description) {
+        this.categoryId = categoryId;
         this.categoryName = categoryName;
-        this.image_url = image_url;
-        this.description = description;
+        this.categoryImage = image_url;
+        this.categoryDescription = description;
     }
 
-    public String getCategoryID() {
-        return categoryID;
+    public Category(String categoryName, String categoryDescription) {
+        this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
     }
 
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
@@ -33,19 +38,20 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getCategoryImage() {
+        return categoryImage;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setCategoryImage(String categoryImage) {
+        this.categoryImage = categoryImage;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
     }
+
 }

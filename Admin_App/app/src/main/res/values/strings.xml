@@ -21,6 +21,17 @@
     <string name="sign_up">Sign Up</string>
     <string name="remember_me">Remember me</string>
     <string name="sign_in">Login</string>
+    <string name="choose_category_image">Choose Category Image</string>
+    <string name="product_name">product name</string>
+    <string name="_0_0">$ 0.0</string>
+    <string name="product_description">product description</string>
+    <string name="extra">Extra</string>
+    <string name="product_available">Product Available</string>
+    <string name="save">Save</string>
+    <string name="choose_product_image">choose product image</string>
+    <string name="extra_item_name">Extra item name</string>
+    <string name="_0_00">$ 0.00</string>
+    <string name="extra_title">Extra title</string>
 
 
 </resources>
