@@ -4,28 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     tools:listitem="@layout/viewholder_category"
     android:orientation="vertical"
+    android:elevation="@dimen/dp_3"
+    android:layout_margin="10dp"
     android:padding="@dimen/dp_10">
 
 
     <ImageView
         android:id="@+id/imgCategory"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_margin="@dimen/dp_10"
-        app:srcCompat="@drawable/cat_1" />
+        style="@style/CircularImageView"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtCategoryName"
         style="@style/textViewStyle"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="title"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:padding="@dimen/dp_4"
         tools:text="@tools:sample/cities" />
 
 

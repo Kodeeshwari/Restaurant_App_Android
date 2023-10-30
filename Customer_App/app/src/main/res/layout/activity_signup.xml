@@ -20,13 +20,14 @@
         <EditText
             android:id="@+id/edtFirstName"
             style="@style/editTextStyle"
-            android:hint="@string/first_name"
+            android:hint="@string/name"
             android:layout_marginTop="@dimen/dp_16"/>
 
         <!-- Last Name -->
         <EditText
             android:id="@+id/edtLastName"
             style="@style/editTextStyle"
+            android:visibility="gone"
             android:hint="@string/last_name"/>
 
         <!-- Email -->

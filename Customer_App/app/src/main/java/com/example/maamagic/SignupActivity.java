@@ -77,8 +77,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             userFirebaseManager.signUp(name, email, password, address, phoneNumber, task -> {
                 if (task.isSuccessful()) {
                     Log.d("FirebaseUtility", "Sign-up success: ");
-                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, HomePageActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Log.e("FirebaseUtility", "Sign-up failed: ");
                     Utility.showToastShort(SignupActivity.this, "Sign up failed");

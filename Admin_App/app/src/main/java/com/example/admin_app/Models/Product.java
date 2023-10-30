@@ -3,16 +3,52 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Product {
+    private String categoryId;
+    private String productDescription;
+    private Map<String, Extra> productExtras;
     private String productId;
-    private String title;
-    private String description;
-    private double price;
+    private String productImageURL;
+    private boolean productIsAvailable;
+    private double productPrice;
+    private String productTitle;
 
-    private String categoryID;
-    private String categoryTitle;
-    private Map<String, Extra> extras;
-    private String image_url;
-    private boolean is_available;
+    public Product() {
+    }
+
+    public Product(String categoryId, String productDescription, Map<String, Extra> productExtras, String productId, String productImageURL, boolean productIsAvailable, double productPrice, String productTitle) {
+        this.categoryId = categoryId;
+        this.productDescription = productDescription;
+        this.productExtras = productExtras;
+        this.productId = productId;
+        this.productImageURL = productImageURL;
+        this.productIsAvailable = productIsAvailable;
+        this.productPrice = productPrice;
+        this.productTitle = productTitle;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public Map<String, Extra> getProductExtras() {
+        return productExtras;
+    }
+
+    public void setProductExtras(Map<String, Extra> productExtras) {
+        this.productExtras = productExtras;
+    }
 
     public String getProductId() {
         return productId;
@@ -22,68 +58,36 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getProductImageURL() {
+        return productImageURL;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setProductImageURL(String productImageURL) {
+        this.productImageURL = productImageURL;
     }
 
-    public String getDescription() {
-        return description;
+    public boolean isProductIsAvailable() {
+        return productIsAvailable;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductIsAvailable(boolean productIsAvailable) {
+        this.productIsAvailable = productIsAvailable;
     }
 
-    public double getPrice() {
-        return price;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getCategoryID() {
-        return categoryID;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public String getCategoryTitle() {
-        return categoryTitle;
-    }
-
-    public void setCategoryTitle(String category) {
-        this.categoryTitle = category;
-    }
-
-    public Map<String, Extra> getExtras() {
-        return extras;
-    }
-
-    public void setExtras(Map<String, Extra> extras) {
-        this.extras = extras;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public boolean isIs_available() {
-        return is_available;
-    }
-
-    public void setIs_available(boolean is_available) {
-        this.is_available = is_available;
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
     }
 }
 

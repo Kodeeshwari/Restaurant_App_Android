@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".AddCategoryActivity">
+
+    <EditText
+        android:id="@+id/editTextCategoryName"
+        style="@style/editTextStyle"
+        android:hint="Category Name" />
+
+    <EditText
+        android:id="@+id/editTextCategoryDesc"
+        style="@style/editTextStyle"
+        android:hint="Category Description" />
+
+    <TextView
+        android:id="@+id/cat_image"
+        android:text="@string/choose_category_image"
+        style="@style/textViewStyle"
+        android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:id="@+id/imageSelection"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/baseline_picture_in_picture_24"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/selectImageButton"
+        style="@style/buttonStyle"
+        android:text="select Image"
+        android:background="@color/darkBlue"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAddCategory"
+        style="@style/buttonStyle"
+        android:text="Add Category"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonEditCategory"
+        android:visibility="gone"
+        style="@style/buttonStyle"
+        android:text="Edit Category"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

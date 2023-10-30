@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_16">
+
+
+    <TextView
+        style="@style/textViewStyle"
+        android:id="@+id/txtExtraName"
+        android:text="@string/extra_item_name"
+        android:textAlignment="textStart"
+        android:layout_weight="1"/>
+
+    <TextView
+        style="@style/textViewStyle"
+        android:layout_width="wrap_content"
+        android:id="@+id/txtExtraPrice"
+        android:text="@string/_0_00"/>
+
+    <ImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/baseline_delete_24"
+        android:layout_marginLeft="@dimen/dp_16"/>
+
+</LinearLayout>

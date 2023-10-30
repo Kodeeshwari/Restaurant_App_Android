@@ -1,6 +1,9 @@
 package com.example.maamagic.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +22,9 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private ArrayList<CategoryModel> categoryList;
-    private  Context context;
+    private Context context;
 
-    public CategoryAdapter(Context context , ArrayList categoryNames) {
+    public CategoryAdapter(Context context, ArrayList categoryNames) {
         this.categoryList = categoryNames;
         this.context = context;
     }
@@ -36,7 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryModel categoryModel = categoryList.get(position);
-        holder.bind(categoryModel,context);
+        holder.bind(categoryModel, context);
     }
 
     @Override
@@ -51,19 +54,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryNameTextView = itemView.findViewById(R.id.txtCategoryName);
-            categoryImage = itemView.findViewById(R.id.imgFood);
+            categoryImage = itemView.findViewById(R.id.imgCategory);
         }
 
-        public void bind(CategoryModel category,Context context) {
+        public void bind(CategoryModel category, Context context) {
             categoryNameTextView.setText(category.getCategoryName());
-            if (category.getCategoryImage() != null) {
-          //      Utility.loadImage(context, category.getCategoryImage(), categoryImage);
-//                Glide.with(context).load(R.drawable.pizza).into(categoryImage);
-            } else {
-                Utility.showToastShort(context,"image did not find");
-                Glide.with(context).load(R.drawable.pizza).into(categoryImage);
-            }
-    }
+            Utility.loadImageWithCircle(context, category.getCategoryImage(), categoryImage);
+        }
     }
 }
 

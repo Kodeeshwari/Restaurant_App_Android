@@ -11,19 +11,29 @@
     <style name="textViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/purple</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <!-- Define a custom style for the LinearLayout -->
+    <style name="MyLinearLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:elevation">@dimen/dp_3</item>
+        <item name="android:padding">@dimen/dp_10</item>
     </style>
 
 <!--  Image view  -->
-    <style name="imageViewStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="CircularImageView">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:background">@drawable/circular_shape</item>
     </style>
 
-<!--    Button-->
+    <!--    Button-->
     <style name="buttonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
